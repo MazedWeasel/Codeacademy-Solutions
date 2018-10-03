@@ -1,0 +1,30 @@
+"""Similar to the NumberGuess game - Plays RPS against the computer"""
+from random import randint
+from time import sleep
+
+options= ["STEIN", "PAPIER", "SCHERE"]
+message = {"tie": "Oha, es ist unentschieden!", "won": "Yay du hast gewonnen!", "lost": "Oh nein, der Computer hat gewonnen..."}
+
+def decide_winner(user_choice, com_choice):
+  sleep(1)
+  print "Du hast %s ausgewählt" %(user_choice)
+  print "Der Computer hat %s ausgewählt" %(com_choice)
+  sleep(3)
+  if user_choice == com_choice:
+    print message["tie"]
+  elif user_choice == options[0] and com_choice == options[2]:
+    print message["won"]
+  elif user_choice == options[1] and com_choice == options[0]:
+    print message["won"]
+  elif user_choice == options[2] and com_choice == options[1]:
+    print message["won"]
+  else:
+    print message["lost"]
+    
+def play_RPS():
+  user_choice = raw_input("Suche Schere, Stein oder Papier aus: ")
+  user_choice = user_choice.upper()
+  com_choice = options[randint(0,2)]
+  decide_winner(user_choice, com_choice)  
+                                                   
+play_RPS()
