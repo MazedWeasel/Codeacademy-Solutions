@@ -1,0 +1,115 @@
+from random import randint
+from time import sleep
+
+print "Dies ist Battleship! Ihr habt 5 Versuche, zwei Zerstoerer in einem Raster von 5 * 5 Ozean-Abschnitte zu treffen! Jeder Spieler versucht abwechselnd, eins der beiden Schiffe zu treffen."
+raw_input("Wenn ihr bereit seid, drueckt einfach auf 'Enter'.")
+
+def Name1():
+  xy = raw_input("Spieler 1, was ist dein Name? ")
+  #sleep(0.5)
+  print "Willkommen, " + str(xy) + "!"
+  #sleep(1)
+  return xy
+
+def Name2():
+  yx = raw_input("Spieler 2, wie darf man dich nennen? ")
+  #sleep(0.5)
+  print "Willkommen, " + str(yx) + "!"
+  #sleep(1)
+  return yx
+
+xy = Name1()
+yx = Name2()
+
+board = []
+
+for x in range(0, 5):
+  board.append(["-"] * 5)
+
+def print_board(board):
+  for row in board:
+    print " ".join(row)
+
+print_board(board)
+
+def random_row(board):
+  return randint(0, len(board) - 1)
+
+def random_col(board):
+  return randint(0, len(board[0]) - 1)
+
+ship_row = random_row(board)
+ship_col = random_col(board)
+ship_row2 = random_row(board)
+ship_col2 = random_col(board) 
+print ship_row
+print ship_col
+
+def gewonnen():
+  sleep(0.5)
+  print "Glueckwunsch! Du hast ein Schiff getroffen! " + str(xy) + " hat gewonnen."
+  print "Die Schiffe haben sich hier befunden! (Die +-Zeichen sind die Schiffe)"
+  board[ship_row][ship_col] = "+"
+  board[ship_row2][ship_col2] = "+"
+  print_board(board)
+  return
+
+def gewonnen1():
+  sleep(0.5)
+  print "Glueckwunsch! Du hast ein Schiff getroffen! " + str(yx) + " hat gewonnen."
+  print "Die Schiffe haben sich hier befunden! (Die +-Zeichen sind die Schiffe)"
+  board[ship_row][ship_col] = "+"
+  board[ship_row2][ship_col2] = "+"
+  print_board(board)
+  return
+  
+
+#-------------------------------------------------------------
+for turn in range(4):
+  print "-----// Runde", turn + 1, "\\\-----"
+  guess_row1 = int(raw_input(str(xy) + ", gebe eine Reihe ein: "))-1
+  guess_col1 = int(raw_input("Gebe die zugehoerige Spalte ein: "))-1
+  sleep(0.5)
+
+  if guess_row1 == ship_row and guess_col1 == ship_col:
+    gewonnen()
+    break
+  elif guess_row1 == ship_row2 and guess_col1 == ship_col2:
+    gewonnen()
+    break
+  else:
+    sleep(0.5)
+    if guess_row1 not in range(5) or guess_col1 not in range(5):
+      print "Hoppala, das ist nicht mal im Ozean!"
+    elif board[guess_row1][guess_col1] == "X" or board[guess_row1][guess_col1] == "O":
+      print( "Auf dieses Feld wurde bereits geschossen." )
+    else:
+      print "Du hast leider ins Wasser geschossen."
+      board[guess_row1][guess_col1] = "X"
+    print_board(board)
+    
+  guess_row2 = int(raw_input(str(yx) + ", gebe eine Reihe ein: "))-1
+  guess_col2 = int(raw_input("Gebe die zugehoerige Spalte ein: "))-1
+  sleep(0.5)
+
+  if guess_row2 == ship_row and guess_col2 == ship_col:
+    gewonnen1()
+    break
+  elif guess_row2 == ship_row2 and guess_col2 == ship_col2:
+    gewonnen1()
+    break
+  else:
+    sleep(0.5)
+    if guess_row2 not in range(5) or guess_col2 not in range(5):
+      print "Hoppala, das ist nicht mal im Ozean!"
+    elif board[guess_row2][guess_col2] == "X" or board[guess_row2][guess_col2] == "O":
+      print "Auf dieses Feld wurde bereits geschossen."
+    else:
+      print "Du hast die Schiffe verfehlt!"
+      board[guess_row2][guess_col2] = "O"
+    if (turn == 3):
+      print "Game Over"
+      print "Die Schiffe haben sich hier befunden! (Die +-Zeichen sind die Schiffe)"
+      board[ship_row][ship_col] = "+"
+      board[ship_row2][ship_col2] = "+"
+    print_board(board)
