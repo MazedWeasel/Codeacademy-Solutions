@@ -1,0 +1,49 @@
+#rolls a pair of dice and asks the user to guess the sum. If the user's guess is equal to the total value of the dice roll, the user wins! Otherwise, the computer wins.
+from random import randint
+from time import sleep
+
+def get_user_guess():
+  guess = int(raw_input("Gebe hier deine geratene Summe der Wuerfel ein: "))
+  return guess
+
+def get_user_guess2():
+  guess2 = int(raw_input("Gebe hier deine zweite geratene Summe der Wuerfel ein: "))
+  return guess2
+
+def roll_dice(number_of_sides):
+  first_roll = randint(1, number_of_sides)
+  second_roll = randint(1, number_of_sides)
+  max_val = number_of_sides * 2
+  print "Willkommen bei diesem (Zufalls-) Spiel. Um zu gewinnen, musst du"
+  print "die Summe der Augenzahlen zweier geworfenen Wuerfel richtig "
+  print "erraten! Wenn du falsch geraten hast, gewinnt der Computer."
+  sleep(1)
+  print "Die groestmoegliche Summe der Augenzahlen ist %s" %(str(max_val))
+  guess = get_user_guess()
+  guess2 = get_user_guess2()
+  if guess > max_val:
+    print "Schaetzung ungueltig: Deine geratene Zahl ist hoeher als der groestmoegliche Betrag (Siehe oben)"
+  elif guess2 > max_val:
+    print "Schaetzung ungueltig: Deine geratene Zahl ist hoeher als der groestmoegliche Betrag (Siehe oben)"
+  else:
+    print "Es wird gewuerfelt..."
+    sleep(3)
+    print "Der erste wuerfel zeigt %d Augenzahlen" %(first_roll)
+    sleep(1)
+    print "Der zweite wuerfel zeigt %d Augenzahlen" %(second_roll)
+    sleep(1)
+    total_roll = first_roll + second_roll
+    print "Die Summe der Augenzahlen ist %d!" %(total_roll)
+    sleep (2)
+    print "Und der Gewinner ist..."
+    sleep (2)
+    if guess == total_roll:
+      print "Glckwunsch!! Du hast gewonnen!"
+    elif guess2 == total_roll:
+      print "Glckwunsch!! Du hast gewonnen!"
+    else:
+      print "Oh-Oh: Der Computer hat leider gewonnen..."
+      sleep(2)
+      print "Mehr Glueck beim naechsten Mal!"
+      
+roll_dice(6)      
