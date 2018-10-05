@@ -1,0 +1,23 @@
+"""Claculator computes the area of a prompted: 
+Circle
+Triangle
+"""
+print "The calculator has started"
+
+option = raw_input("Enter a C for Circle or T for Triangle: ")
+
+if option == "C":
+  radius = float(raw_input("Enter the radius of the circle: "))
+  area = radius**2 * 3.14159
+  print "The area is %f" % area 
+  
+elif option == "T":
+  base = float(raw_input("Enter the base of the triangle: "))
+  height = float(raw_input("Enter the height: "))
+  area = 0.5 * base * height
+  print "The area is %s" % area
+  
+else:
+  print "The input (%s) is not valid." % option
+
+print "Exiting..."
