@@ -1,0 +1,34 @@
+#Taschenrechner Python
+
+print ("1 = Addition")
+print ("2 = Subtraktion")
+print ("3 = Multiplikation")
+print ("4 = Division")
+Art = input("Wie möchtest du rechnen? ")
+
+if Art == ("1"):
+    x = int(input("Gebe die erste Zahl ein: "))
+    y = int(input("Gebe die zweite Zahl ein: "))
+    z = (x + y)
+    print ("Die Summe ist " + str(z) + ".")
+    
+elif Art == ("2"):
+    x1 = int(input("Gebe die erste Zahl ein: "))
+    y2 = int(input("Gebe die zweite Zahl ein: "))
+    z = (x1 - y2)
+    print ("Die Differenz ist " + str(z) + ".")
+    
+elif Art == ("3"):
+    x1 = int(input("Gebe die erste Zahl ein: "))
+    y2 = int(input("Gebe die zweite Zahl ein: "))
+    z = (x1 * y2)
+    print ("Das Produkt ist " + str(z) + ".")
+    
+elif Art == ("4"):
+    x1 = int(input("Gebe die erste Zahl ein: "))
+    y2 = int(input("Gebe die zweite Zahl ein: "))
+    z = (x1 / y2)
+    print ("Der Wert des Quotienten" + "(Ergebnis) ist " + str(z) + ".")
+    
+else:
+    print ("Bitte gebe beim nächsten mal eine gültige Zahl ein.")
